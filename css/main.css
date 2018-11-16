@@ -94,5 +94,23 @@ footer {
       footer .redes-sociales li a {
         color: #F55000; }
 
+.nuestros-clientes .fa {
+  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+  background: #e64d00;
+  color: #ffffff;
+  padding: 1.3rem 1.7rem;
+  margin-bottom: .8rem; }
+
 body {
   font-family: 'Lato', sans-serif; }
+
+.nuestros-clientes img {
+  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important; }
+
+.dr {
+  display: none !important; }
+
+.res {
+  display: block; }
