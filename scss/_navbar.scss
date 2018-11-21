@@ -268,3 +268,9 @@
     }
   }
 }
+
+@include media-breakpoint-down(xs) { 
+  .navbar {
+    background-color: #000000;
+  }
+}

@@ -25,6 +25,11 @@
 }
 
 @media (max-width: 576px) {
+  .banner {
+    .container {
+      width: 100%;
+    }
+  }
   .banner-2 {
     .container {
       width: 100%;
