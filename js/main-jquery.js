@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
   (function(window) {
     // Transition effect for navbar 
     $(window).scroll(function() {
@@ -11,27 +11,32 @@ $(document).ready(function(){
     });
   })(window);
 
-  
+
   $('#formulario').submit(function() {
     var url = 'vendor/phpmailer/enviar.php';
     $.ajax({
       type: 'POST',
       url: url,
       data: $('#formulario').serialize(),
-      success: function(success) {
-        if (success) {
-          $('.alert').removeClass('dr')
-          $('.alert').addClass('res');
-          document.getElementById("formulario").reset();
-        }
+      beforeSend: function(xhr) {
+        $('#btn-submit').html('Enviando...');
       },
-      error: function(error) {
-        console.log(error);
+      complete: function() {
+        $('#btn-submit').html('Enviado');
       }
+    }).done(function(response) {
+      console.log(response);
+      $('#msg').html('<div class ="alert alert-success">Formulario enviado gracias</div>');
+      $("#formulario")[0].reset();
+    }).fail(function(data) {
+      if (data.responseText !== '') {
+        $('#msg').html('<div class ="alert alert-danger">' + data.responseText + '</div>');
+      } else {
+        $(formMessages).text('O');
+      }
+      $("#formulario")[0].reset();
     });
     return false;
   });
-  
+
 });
-
-
