@@ -12,31 +12,42 @@ $(document).ready(function() {
   })(window);
 
 
-  $('#formulario').submit(function() {
-    var url = 'vendor/phpmailer/enviar.php';
-    $.ajax({
-      type: 'POST',
-      url: url,
-      data: $('#formulario').serialize(),
-      beforeSend: function(xhr) {
-        $('#btn-submit').html('Enviando...');
-      },
-      complete: function() {
-        $('#btn-submit').html('Enviado');
-      }
-    }).done(function(response) {
-      console.log(response);
-      $('#msg').html('<div class ="alert alert-success">Formulario enviado gracias</div>');
-      $("#formulario")[0].reset();
-    }).fail(function(data) {
-      if (data.responseText !== '') {
-        $('#msg').html('<div class ="alert alert-danger">' + data.responseText + '</div>');
+  $('#formulario').submit(function(event) {
+    event.preventDefault();
+    let host = 'smtp.gmail.com';
+    let adressee = 'pablorincones95@gmail.com';
+    let password = 'v--24418291';
+    let formName = 'Formulario de control de ratones';
+    let names = document.getElementById('names').value;
+    let email = document.getElementById('email').value;
+    let subject = document.getElementById('subject').value;
+    let message = document.getElementById('message').value;
+
+    let body = ` 
+      <div>
+        <p>Nombre: ${names} </p>
+        <p>Asunto: ${subject} </p>
+        <p>Mensaje: ${message} </p>
+      </div>
+    `;
+
+    Email.send({
+      Host: host,
+      Username: adressee,
+      Password: password,
+      To: adressee,
+      From: email,
+      Subject: formName,
+      Body: body
+    }).then(message => {
+
+      if (message === 'OK') {
+        document.getElementById('msg').innerHTML = '<div class ="alert alert-success">Formulario enviado gracias</div>';
       } else {
-        $(formMessages).text('O');
+        document.getElementById('msg').innerHTML = '<div class ="alert alert-danger">A ocurrido un error intente mas tarde</div>';
       }
-      $("#formulario")[0].reset();
+      document.getElementById('formulario').reset();
     });
-    return false;
   });
 
 });
